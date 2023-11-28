@@ -68,14 +68,11 @@ class PomodoroTimer {
     
     
     
-    println(secondsDown, 60 * this.studyTime);
     
    
     
     float angle = (secondsDown * 1.0 /  (60 * this.studyTime)) * 360;
     
-    println(angle);
-
     arc(width / 2, height / 2, 400, 400, 0, radians(angle));
 
     noStroke();
