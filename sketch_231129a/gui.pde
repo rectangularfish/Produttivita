@@ -20,6 +20,11 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:windo
 
 public void timer(GButton source, GEvent event) { //_CODE_:startTimer:648558:
   println("startTimer - GButton >> GEvent." + event + " @ " + millis());
+  
+  timer.timerStart = true;
+  
+  frameCount = 0;
+  
 } //_CODE_:startTimer:648558:
 
 

@@ -32,7 +32,7 @@ class PomodoroTimer {
 
     this.onBreak = oB;
 
-    this.timerStart = true;
+    this.timerStart = false;
 
     this.totalFrames = 3600 * t + 1;
 
@@ -61,7 +61,7 @@ class PomodoroTimer {
 
   void drawMe() {
 
-    println(this.timerStart);
+    //println(this.timerStart);
 
     if (this.timerStart) {
 
@@ -70,7 +70,7 @@ class PomodoroTimer {
 
     textSize(128);
 
-    println(seconds);
+    //println(seconds);
 
 
 
