@@ -1,3 +1,4 @@
+import g4p_controls.*;
 
 PomodoroTimer timer;
 
@@ -9,6 +10,8 @@ color accent2 = color(221, 221, 221);
 void setup() {
   size(1000, 600);
   timer = new PomodoroTimer(25, false);
+  createGUI();
+
 }
 
 
