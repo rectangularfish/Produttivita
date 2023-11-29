@@ -14,18 +14,32 @@ class PomodoroTimer {
   int seconds;
 
 
-  int studyTime;
+  int time;
 
   PomodoroTimer(int t, boolean oB) {
-    this.onBreak = false;
+    
+
+    
+    
+    setState(t, oB);
+   
+  }
+  
+  void setState(int t, boolean oB) {
+    
+  
+    
+    
+    
+    this.onBreak = oB;
+    
     this.timerStart = true;
-
-    this.studyTime = t;
-
-
-    this.totalFrames = 3600 * t + 1;
+    
+     this.totalFrames = 3600 * t + 1;
 
     this.seconds = (totalFrames - frameCount) / 60;
+    
+    this.time = t;
 
     if (oB == false) {
 
@@ -33,14 +47,24 @@ class PomodoroTimer {
     } else {
       this.tColor = color(171, 49, 49);
     }
+    
+    
+    
+    
   }
+    
+    
+    
+  
 
 
 
 
   void drawMe() {
-
-    if (timerStart) {
+    
+    println(this.timerStart);
+    
+    if (this.timerStart) {
 
       this.seconds = (totalFrames - frameCount) / 60;
     }
@@ -48,7 +72,6 @@ class PomodoroTimer {
     textSize(128);
 
 
-    println(this.seconds);
 
 
 
@@ -78,21 +101,23 @@ class PomodoroTimer {
     stroke(this.tColor);
 
     strokeWeight(30);
+    
+   
+    
+    float angle = (seconds * 1.0 /  (60 * this.time)) * 360;
 
-    float angle = (seconds * 1.0 /  (60 * this.studyTime)) * 360;
 
 
-
-
+    println(angle);
     arc(width / 2, height / 2, 400, 400, 0, radians(angle));
   }
   
-  void setBreak() {
+  //void setBreak() {
     
     
     
     
     
-  }
+  //}
   
-}
+ }
