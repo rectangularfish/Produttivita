@@ -8,7 +8,7 @@ color accent2 = color(221, 221, 221);
 
 void setup() {
   size(1000, 600);
-  timer = new PomodoroTimer(1, false);
+  timer = new PomodoroTimer(25, false);
 }
 
 
@@ -25,6 +25,9 @@ void draw() {
 
   if (timer.seconds == 0) {
 
-    delay(1000);
+    
+    timer.setState(5, true);
+    
+
   }
 }

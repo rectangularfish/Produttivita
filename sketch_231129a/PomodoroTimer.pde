@@ -36,10 +36,14 @@ class PomodoroTimer {
     this.timerStart = true;
     
      this.totalFrames = 3600 * t + 1;
+     
+     frameCount = 0; 
 
     this.seconds = (totalFrames - frameCount) / 60;
     
-    this.time = t;
+    
+    
+    this.time = t * 60;
 
     if (oB == false) {
 
@@ -70,12 +74,14 @@ class PomodoroTimer {
     }
 
     textSize(128);
+    
+    println(seconds);
 
 
 
 
 
-    minutesDisplay = str(seconds/60);
+    minutesDisplay = str(seconds / 60);
     secondsDisplay = str(seconds % 60);
 
 
@@ -104,7 +110,7 @@ class PomodoroTimer {
     
    
     
-    float angle = (seconds * 1.0 /  (60 * this.time)) * 360;
+    float angle = (seconds * 1.0 /  (this.time)) * 360;
 
 
 
