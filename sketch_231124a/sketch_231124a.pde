@@ -4,6 +4,8 @@ PomodoroTimer timer;
 
 color accent1 = color(34, 34, 34);
 
+color accent2 = color(221, 221, 221);
+
 void setup() {
   size(1000, 600);
   timer = new PomodoroTimer(25, 5);
@@ -11,11 +13,15 @@ void setup() {
 
 
 void draw() {
-
   background(accent1); // almost black looks clean
 
-  fill(221, 221, 221); // almost white clean
+  fill(accent2); // almost white clean
 
-  square(mouseX, mouseY, 100);
+
+  
+  
   timer.drawMe();
+  
+ 
+  
 }

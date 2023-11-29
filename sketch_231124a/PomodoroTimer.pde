@@ -2,79 +2,85 @@ class PomodoroTimer {
 
 
 
-  int studyTime, breakTime;
-  boolean onBreak;
+  boolean onBreak, timerStart;
 
+
+  int totalFrames;
+
+  color timerColor = color(80, 123, 88);
+
+  String minutesDisplay, secondsDisplay;
+
+  int seconds;
 
   int secondsDown;
 
-  int timer;
-
-  int interval; // 10 seconds
-  
-  color timerColor = color(80, 123, 88);
-
-
+  int studyTime;
 
   PomodoroTimer(int st, int bt) {
-
     this.onBreak = false;
+    this.timerStart = true;
+
     this.studyTime = st;
-    this.breakTime = bt;
 
-    this.timer = millis();
 
-    this.interval =  60000 * this.studyTime;
+    this.totalFrames = 3600 * st + 1;
+
+    seconds = (totalFrames - frameCount) / 60;
   }
+
+
 
 
   void drawMe() {
 
+    if (timerStart) {
 
-    if (millis() - timer > interval) {
-
-      timer = millis();
+      seconds = (totalFrames - frameCount) / 60;
     }
-
-    int elapsedSeconds = (millis() - timer) / 1000;
-
-    secondsDown = interval/1000 - elapsedSeconds;
-    
-    
-
-
-    String minutes = str(secondsDown / 60);
-    
-    String seconds = str(secondsDown % 60);
-    
-    if (int(seconds) < 10) {
-      
-       seconds = "0" + seconds;
-      
-    }
-
-    textAlign(CENTER);
-    
+  
     textSize(128);
-    
-    text(minutes + ":" + " " + seconds, width/2, height/2 + 25);
 
 
-    noFill();
 
-    stroke(timerColor);
+
+    minutesDisplay = str(seconds/60);
+    secondsDisplay = str(seconds % 60);
+
+
+
+    if (int(minutesDisplay) < 10) {
+
+      minutesDisplay = "0" + minutesDisplay;
+    }
+
+    if (int(secondsDisplay) < 10) {
+
+      secondsDisplay = "0" + secondsDisplay;
+    }
+
+
+    fill(accent2);
+    textAlign(CENTER);
+    text(minutesDisplay + ":" + secondsDisplay, width / 2, (height / 2) + 20);
+
+
+     noFill();
+     
+     stroke(timerColor);
 
     strokeWeight(30);
     
+    float angle = (seconds * 1.0 /  (60 * this.studyTime)) * 360;
     
     
     
-   
-    
-    float angle = (secondsDown * 1.0 /  (60 * this.studyTime)) * 360;
     
     arc(width / 2, height / 2, 400, 400, 0, radians(angle));
 
-    noStroke();
+
+
+
+    
   }
 }
