@@ -8,7 +8,7 @@ color accent2 = color(221, 221, 221);
 
 void setup() {
   size(1000, 600);
-  timer = new PomodoroTimer(1, 5);
+  timer = new PomodoroTimer(1, false);
 }
 
 
@@ -18,10 +18,13 @@ void draw() {
   fill(accent2); // almost white clean
 
 
-  
-  
+
+
   timer.drawMe();
-  
- 
-  
+
+
+  if (timer.seconds == 0) {
+
+    delay(1000);
+  }
 }
