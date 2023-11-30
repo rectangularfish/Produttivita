@@ -11,10 +11,7 @@ class PomodoroTimer {
 
   String minutesDisplay, secondsDisplay;
 
-  int seconds;
-
-
-  int time;
+  int seconds, time;
 
   PomodoroTimer(int t, boolean oB) {
 
@@ -25,32 +22,28 @@ class PomodoroTimer {
   }
 
   void setState(int t, boolean oB) {
-
-
-
-
-
     this.onBreak = oB;
-
+    
     this.timerStart = false;
-
+    
     this.totalFrames = 3600 * t + 1;
-
-    frameCount = 0;
-
-    this.seconds = (totalFrames - frameCount) / 60;
-
-
-
+    
+    frameCounter = 0;
+    
+    this.seconds = (totalFrames - frameCounter) / 60;
+    
     this.time = t * 60;
+    println("OB IS =" + oB);
+
 
     if (oB == false) {
-
-      this.tColor =  color(80, 123, 88);
-    } else {
-      this.tColor = color(171, 49, 49);
+        this.tColor =  color(80, 123, 88);
+        println("Colour green");
+    } else if (oB == true) {
+        this.tColor = color(171, 49, 49);
+        println("Colour red");
     }
-  }
+}
 
 
 
@@ -65,21 +58,14 @@ class PomodoroTimer {
 
     if (this.timerStart) {
 
-      this.seconds = (totalFrames - frameCount) / 60;
+      this.seconds = (totalFrames - frameCounter) / 60;
     }
 
     textSize(128);
 
-    //println(seconds);
-
-
-
-
 
     minutesDisplay = str(seconds / 60);
     secondsDisplay = str(seconds % 60);
-
-
 
     if (int(minutesDisplay) < 10) {
 
@@ -94,7 +80,7 @@ class PomodoroTimer {
     fill(accent2);
     textAlign(CENTER);
     text(minutesDisplay + ":" + secondsDisplay, width / 2, (height / 2) + 20);
-    
+
     noFill();
 
     stroke(this.tColor);
