@@ -60,6 +60,8 @@ public void jazzButtonPressed(GButton source, GEvent event) { //_CODE_:jazzMusic
     currentMusic = fileJazz; 
     
     currentMusic.play();
+    
+    
 
 } //_CODE_:jazzMusic:741816:
 
@@ -67,6 +69,10 @@ public void volumeSliderPressed(GSlider source, GEvent event) { //_CODE_:volumeS
   volume = volumeSlider.getValueF();
   currentMusic.amp(volume);
 } //_CODE_:volumeSlider:449108:
+
+public void playMusicButtonPressed(GButton source, GEvent event) { //_CODE_:pauseMusicB:501192:
+  println("pauseMusicB - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:pauseMusicB:501192:
 
 
 
@@ -100,6 +106,9 @@ public void createGUI(){
   volumeSlider.setNumberFormat(G4P.DECIMAL, 0);
   volumeSlider.setOpaque(false);
   volumeSlider.addEventHandler(this, "volumeSliderPressed");
+  pauseMusicB = new GButton(window1, 184, 297, 115, 30);
+  pauseMusicB.setText("Pause Music");
+  pauseMusicB.addEventHandler(this, "playMusicButtonPressed");
   window1.loop();
 }
 
@@ -111,3 +120,4 @@ GButton lofiMusic;
 GButton pianoMusic; 
 GButton jazzMusic; 
 GSlider volumeSlider; 
+GButton pauseMusicB; 

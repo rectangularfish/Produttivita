@@ -10,7 +10,7 @@ PomodoroTimer timer;
 
 int breakTime = 5;
 
-int studyTime = 25; 
+int studyTime = 10; 
 
 
 color accent1 = color(34, 34, 34);
@@ -24,10 +24,12 @@ boolean lofi = false;
 boolean jazz = false;
 boolean classical = false; 
 
+boolean musicPlaying = false; 
+
 
 void setup() {
   size(1000, 600);
-  //frameRate(2000);
+  frameRate(2000);
   
   
   timer = new PomodoroTimer(studyTime, false);
@@ -80,7 +82,7 @@ void determineCurrentSong() {
 }
 
 
-
+  
 
 
 
@@ -94,5 +96,17 @@ void loadData() {
   currentMusic = new SoundFile(this, "test.wav");
   
   
+  
+}
+
+
+void playMusic(SoundFile i) {
+  
+ currentMusic.stop();
+ 
+ currentMusic = i; 
+    
+  currentMusic.play();
+     
   
 }
