@@ -57,6 +57,9 @@ public void pianoButtonPressed(GButton source, GEvent event) { //_CODE_:pianoMus
 
 public void jazzButtonPressed(GButton source, GEvent event) { //_CODE_:jazzMusic:741816:
     currentMusic.stop();
+    currentMusic = fileJazz; 
+    
+    currentMusic.play();
 
 } //_CODE_:jazzMusic:741816:
 
@@ -83,15 +86,17 @@ public void createGUI(){
   startTimer.addEventHandler(this, "timer");
   lofiMusic = new GButton(window1, 41, 271, 118, 30);
   lofiMusic.setText("Play Lofi Music");
+  lofiMusic.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   lofiMusic.addEventHandler(this, "lofiButtonPressed");
   pianoMusic = new GButton(window1, 42, 323, 117, 30);
   pianoMusic.setText("Play Piano Music");
   pianoMusic.addEventHandler(this, "pianoButtonPressed");
   jazzMusic = new GButton(window1, 42, 373, 117, 30);
   jazzMusic.setText("Play Jazz Music");
+  jazzMusic.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   jazzMusic.addEventHandler(this, "jazzButtonPressed");
   volumeSlider = new GSlider(window1, 40, 423, 124, 40, 10.0);
-  volumeSlider.setLimits(0.5, 0.0, 1.0);
+  volumeSlider.setLimits(1.0, 0.0, 1.0);
   volumeSlider.setNumberFormat(G4P.DECIMAL, 0);
   volumeSlider.setOpaque(false);
   volumeSlider.addEventHandler(this, "volumeSliderPressed");
