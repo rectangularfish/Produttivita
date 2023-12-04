@@ -5,6 +5,8 @@ class PomodoroTimer {
   boolean onBreak, timerStart;
 
 
+  int t; 
+
   int totalFrames;
 
   color tColor;
@@ -13,9 +15,20 @@ class PomodoroTimer {
 
   int seconds, time;
 
-  PomodoroTimer(int t, boolean oB) {
+  PomodoroTimer(int st, int bt, boolean oB) {
 
-
+    if(oB == true) {
+     
+      
+      t = bt;
+      
+      
+    }
+    else {
+     
+      t = st; 
+      
+    }
 
 
     setState(t, oB);
@@ -23,27 +36,27 @@ class PomodoroTimer {
 
   void setState(int t, boolean oB) {
     this.onBreak = oB;
-    
+
     this.timerStart = false;
-    
+
     this.totalFrames = 3600 * t + 1;
-    
+
     frameCounter = 0;
-    
+
     this.seconds = (totalFrames - frameCounter) / 60;
-    
+
     this.time = t * 60;
     println("OB IS =" + oB);
 
 
     if (oB == false) {
-        this.tColor =  color(80, 123, 88);
-        println("Colour green");
+      this.tColor =  color(80, 123, 88);
+      println("Colour green");
     } else if (oB == true) {
-        this.tColor = color(171, 49, 49);
-        println("Colour red");
+      this.tColor = color(171, 49, 49);
+      println("Colour red");
     }
-}
+  }
 
 
 

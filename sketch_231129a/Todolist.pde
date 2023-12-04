@@ -17,7 +17,7 @@ class TodoList {
 
     this.tasks.add(task);
   }
-  
+
   void removeTask(String task) {
     // Check if the task exists before removing
     if (this.tasks.contains(task)) {
@@ -31,14 +31,14 @@ class TodoList {
 
   void displayTasks() {
     textAlign(LEFT);
-    textSize(48);
+    textSize(64);
     fill(accent2);
 
-    text(name + " " + "Todo list:", 10, height/2 - 50);
-    textSize(32);
+    text(name + " " + "Todo list:", 10, height/2 - 150);
+    textSize(48);
     // Display tasks
     for (int i = 0; i < tasks.size(); i++) {
-      text("-" + " " + this.tasks.get(i), 30, height/2 + i * 20);
+      text("-" + " " + this.tasks.get(i), 30, (height/2 - 75) + (i * 50));
     }
   }
 }

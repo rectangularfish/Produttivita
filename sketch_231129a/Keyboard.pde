@@ -19,6 +19,7 @@ void keyPressed() {
     } else if (fl.currentSide.equals("Back")) {
 
       println("Flashcard saved");
+      createFlashcard = false;
     }
 
 

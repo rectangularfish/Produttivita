@@ -13,7 +13,7 @@ PomodoroTimer timer;
 
 int breakTime = 5;
 
-int studyTime = 10;
+int studyTime = 25;
 
 int drawLoop = 0;
 
@@ -30,27 +30,32 @@ boolean classical = false;
 
 boolean musicPlaying = false;
 
-boolean createFlashcard = true;
+boolean createFlashcard = false;
 
+boolean displayFlashcard = false;
 
+int currentFlashcardI = 0;
 
+boolean timerChanged = false;
+
+float pausedTime = 0;
 ArrayList<Flashcard> flashcards;
 
 
-
-Flashcard fl;
+Flashcard current_fl;
 void setup() {
-  size(1200, 800);
-  frameRate(2000);
+  size(1600, 800);
+    
+    
+  frameRate(1000);
 
-
-  timer = new PomodoroTimer(studyTime, false);
+  timer = new PomodoroTimer(studyTime, breakTime, false);
 
   list = new TodoList();
 
   list.addTask("Make food");
+  
 
-  fl = new Flashcard();
 
 
   createGUI();
@@ -59,6 +64,14 @@ void setup() {
 
 
 void draw() {
+  if (timerChanged) {
+
+    timer = new PomodoroTimer(studyTime, breakTime, false);
+
+    timerChanged = false;
+  }
+
+
   background(accent1); // almost black looks clean
 
   fill(accent2); // almost white clean
@@ -89,27 +102,23 @@ void draw() {
   list.displayTasks();
 
   // flashcards stuff
-
-  fl.drawFlashcard();
+  if (createFlashcard) {
+  fl.drawFlashcard();}
 
   drawLoop++;
-  
 }
 
 
 
-//void loadData() {
+void loadData() {
 
-//  fileLofi = new SoundFile(this, "lofi.wav");
+  fileLofi = new SoundFile(this, "lofi.wav");
 
-//  fileClassical = new SoundFile(this, "piano.wav");
+  fileClassical = new SoundFile(this, "piano.wav");
 
-//  //fileJazz = new SoundFile(this, "jazz.wav");
-//  currentMusic = new SoundFile(this, "test.wav");
-
-
-
-//}
+  fileJazz = new SoundFile(this, "jazz.wav");
+  currentMusic = new SoundFile(this, "test.wav");
+}
 
 
 void playMusic(SoundFile i) {
@@ -119,4 +128,10 @@ void playMusic(SoundFile i) {
   currentMusic = i;
 
   currentMusic.play();
+  currentMusic.amp(volume);
+
+  musicPlaying = true;
+
+
+  pauseMusicB.setText("Pause");
 }
