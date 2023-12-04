@@ -42,11 +42,11 @@ float pausedTime = 0;
 ArrayList<Flashcard> flashcards;
 
 
-Flashcard current_fl;
+Flashcard fl;
 void setup() {
   size(1600, 800);
-    
-    
+
+
   frameRate(1000);
 
   timer = new PomodoroTimer(studyTime, breakTime, false);
@@ -54,12 +54,12 @@ void setup() {
   list = new TodoList();
 
   list.addTask("Make food");
-  
+
 
 
 
   createGUI();
-  //loadData();
+  loadData();
 }
 
 
@@ -103,7 +103,8 @@ void draw() {
 
   // flashcards stuff
   if (createFlashcard) {
-  fl.drawFlashcard();}
+    fl.drawFlashcard();
+  }
 
   drawLoop++;
 }

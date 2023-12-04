@@ -38,6 +38,11 @@ void keyPressed() {
 
       fl.currentSide = "Front";
     }
+    else if (fl.currentSide == "Front" && L == 0) {
+
+
+      createFlashcard = false;
+    }
 
 
     if (L > 0) {
