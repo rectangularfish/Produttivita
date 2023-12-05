@@ -59,7 +59,7 @@ void setup() {
 
 
   createGUI();
-  loadData();
+  //loadData();
 }
 
 

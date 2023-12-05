@@ -1,10 +1,9 @@
 class PomodoroTimer {
-
-
-
+  
+  
+  
+  
   boolean onBreak, timerStart;
-
-
   int t; 
 
   int totalFrames;
