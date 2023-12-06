@@ -30,9 +30,18 @@ class TodoList {
 
 
   void displayTasks() {
+
+    fill(accent2);
+    
+    noStroke();
+
+    rectMode(CENTER);
+    rect(width/6, height/2, 515, 515, 50);
+    
+    fill(accent1);
+    
     textAlign(LEFT);
     textSize(64);
-    fill(accent2);
 
     text(name + " " + "Todo list:", 10, height/2 - 150);
     textSize(48);
