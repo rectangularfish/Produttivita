@@ -143,12 +143,11 @@ public void genFlashcardPressed(GButton source, GEvent event) { //_CODE_:genFlas
   fl = new Flashcard();
 
   createFlashcard = true;
-
 } //_CODE_:genFlashcard:367377:
 
-public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:245375:
-  println("button1 - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:button1:245375:
+public void practice(GButton source, GEvent event) { //_CODE_:practiceFlashcard:245375:
+  println("practiceFlashcard - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:practiceFlashcard:245375:
 
 
 
@@ -210,7 +209,7 @@ public void createGUI(){
   breakAmount.setPromptText("5");
   breakAmount.setOpaque(true);
   breakAmount.addEventHandler(this, "setBreakTimer");
-  startTimer = new GButton(window1, 400, 155, 80, 30);
+  startTimer = new GButton(window1, 396, 164, 80, 30);
   startTimer.setText("Start Timer");
   startTimer.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   startTimer.addEventHandler(this, "timerPressed");
@@ -236,15 +235,15 @@ public void createGUI(){
   removeField.addEventHandler(this, "removetoToDoList");
   label2 = new GLabel(window1, 396, 228, 100, 38);
   label2.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  label2.setText("My label");
+  label2.setText("Flashcards");
   label2.setOpaque(false);
   genFlashcard = new GButton(window1, 386, 282, 116, 30);
   genFlashcard.setText("Create a flashcard");
   genFlashcard.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   genFlashcard.addEventHandler(this, "genFlashcardPressed");
-  button1 = new GButton(window1, 382, 328, 129, 30);
-  button1.setText("Practice Flashcards");
-  button1.addEventHandler(this, "button1_click1");
+  practiceFlashcard = new GButton(window1, 382, 328, 129, 30);
+  practiceFlashcard.setText("Practice Flashcards");
+  practiceFlashcard.addEventHandler(this, "practice");
   window1.loop();
 }
 
@@ -270,4 +269,4 @@ GLabel removeLabel;
 GTextField removeField; 
 GLabel label2; 
 GButton genFlashcard; 
-GButton button1; 
+GButton practiceFlashcard; 

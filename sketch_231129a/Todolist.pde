@@ -43,8 +43,11 @@ class TodoList {
     textAlign(LEFT);
     textSize(64);
 
-    text(name + " " + "Todo list:", 10, height/2 - 150);
+    text(name + " " + "Todo list:", 20, height/2 - 150);
     textSize(48);
+    
+    
+    
     // Display tasks
     for (int i = 0; i < tasks.size(); i++) {
       text("-" + " " + this.tasks.get(i), 30, (height/2 - 75) + (i * 50));

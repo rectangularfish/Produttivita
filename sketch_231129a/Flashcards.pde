@@ -1,3 +1,5 @@
+float startY;
+
 class Flashcard {
   String front;
   String back;
@@ -6,7 +8,17 @@ class Flashcard {
   Flashcard() {
     this.front = "";
     this.back = "";
-    this.currentSide = "Front";
+    this.currentSide = "Frontside";
+  }
+
+
+  Flashcard(String f, String b) {
+
+    this.front = f;
+
+    this.back = b;
+
+    this.currentSide = "Frontside";
   }
 
   void setFront(String f) {
@@ -22,13 +34,15 @@ class Flashcard {
 
 
     rectMode(CENTER);
-    noStroke();
+
+    strokeWeight(20);
+    stroke(accent1);
     rect(width / 2, height / 2, width - 100, height - 200, 25);
 
     textAlign(LEFT);
     textSize(64);
-    fill(accent1);
 
+    fill(accent1);
     // Count the number of newlines in the test string
     int numNewlines = 0;
     for (int i = 0; i < test.length(); i++) {
@@ -38,17 +52,23 @@ class Flashcard {
     }
 
     // Adjust the starting position based on the number of newlines
-    float startY = height / 2 - numNewlines * 30; // Adjust the multiplier as needed
+    startY = height / 2 - numNewlines * 30; // Adjust the multiplier as needed
 
-    text(currentSide, 100, 200);
+    text(this.currentSide, 100, 200);
     textAlign(CENTER);
     text(test, width / 2, startY);
+
+
+    if (createFlashcard == false) {
+
+      if (this.currentSide == "Frontside")
+        text(front, width/2, height/2);
+      else if (this.currentSide == "Backside")
+        text(back, width/2, height/2);
+    }
   }
 
   void save() {
     flashcards.add(this);
   }
-  
-  
-  
 }
