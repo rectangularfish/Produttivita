@@ -146,7 +146,23 @@ public void genFlashcardPressed(GButton source, GEvent event) { //_CODE_:genFlas
 } //_CODE_:genFlashcard:367377:
 
 public void practice(GButton source, GEvent event) { //_CODE_:practiceFlashcard:245375:
-  println("practiceFlashcard - GButton >> GEvent." + event + " @ " + millis());
+
+    if(practiceFlashcards == false && flashcards.size() > 0) {
+     
+      
+      practiceFlashcard.setText("Practice Flashcards");
+      
+      practiceFlashcards = true;  
+      
+    }else if(practiceFlashcards == true && flashcards.size() > 0) {
+     
+      
+      practiceFlashcard.setText("Stop Practicing");
+      
+      practiceFlashcards = false;  
+      
+    }
+
 } //_CODE_:practiceFlashcard:245375:
 
 

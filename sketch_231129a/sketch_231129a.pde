@@ -61,7 +61,6 @@ void setup() {
 
   list = new TodoList();
 
-  list.addTask("Make food");
 
   flashcards = new ArrayList<Flashcard>();
 
