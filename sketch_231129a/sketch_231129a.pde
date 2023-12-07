@@ -32,9 +32,9 @@ int r1 = 34;
 int g1 = 34;
 int b1 = 34;
 
-int r2 = 221;
-int g2 = 221;
-int b2 = 221;
+int r2 = 223;
+int g2 = 223;
+int b2 = 223;
 
 
 int frameCounter = 0;
@@ -119,6 +119,7 @@ void draw() {
 
   drawLoop++;
 
+      genVisualizer();
 
   if (createFlashcard) {
     fl.drawFlashcard();
@@ -149,7 +150,6 @@ void draw() {
       }
     }
   }
-  genVisualizer();
 }
 
 
