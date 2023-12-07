@@ -2,7 +2,6 @@ import g4p_controls.*;
 import processing.sound.*;
 
 
-String name = "Nikolaus";
 
 
 SoundFile fileLofi, fileJazz, fileClassical, currentMusic ;
@@ -17,14 +16,21 @@ int studyTime = 25;
 
 int drawLoop = 0;
 
-color accent1 = color(34, 34, 34);
-color accent2 = color(221, 221, 221);
+color accent1;
+color accent2;
 
+
+int r1 = 34;
+int g1 = 34;
+int b1 = 34;
+
+int r2 = 221;
+int g2 = 221; 
+int b2 = 221;
 
 
 int frameCounter = 0;
 float volume = 100;
-
 
 
 boolean lofi = false;
@@ -61,16 +67,24 @@ void setup() {
 
   list = new TodoList();
 
-
+  
+  
   flashcards = new ArrayList<Flashcard>();
 
 
   createGUI();
-  //loadData();
+  loadData();
 }
 
 
 void draw() {
+  
+  accent1 = color(r1, g1, b1);
+  
+  accent2 = color(r2, g2, b2);
+  
+  
+  
   if (timerChanged) {
 
     timer = new PomodoroTimer(studyTime, breakTime, false);
