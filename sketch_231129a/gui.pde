@@ -128,7 +128,7 @@ public void removetoToDoList(GTextField source, GEvent event) { //_CODE_:removeF
 
 public void genFlashcardPressed(GButton source, GEvent event) { //_CODE_:genFlashcard:367377:
   fl = new Flashcard();
-
+  fl.typeIntructions = true; 
   createFlashcard = true;
 } //_CODE_:genFlashcard:367377:
 
@@ -147,6 +147,10 @@ public void practice(GButton source, GEvent event) { //_CODE_:practiceFlashcard:
 
     practiceFlashcards = false;
   }
+  
+  
+    typeIntructions = false; 
+
 } //_CODE_:practiceFlashcard:245375:
 
 public void redSlider1(GSlider source, GEvent event) { //_CODE_:redSliderAccent1:591484:
@@ -288,15 +292,15 @@ public void createGUI(){
   todoLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   todoLabel.setText("Todo List");
   todoLabel.setOpaque(false);
-  addLabel = new GLabel(window1, 70, 260, 99, 32);
+  addLabel = new GLabel(window1, 50, 260, 99, 32);
   addLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   addLabel.setText("Add:");
   addLabel.setOpaque(false);
-  itemAdd = new GTextField(window1, 140, 260, 120, 30, G4P.SCROLLBARS_NONE);
+  itemAdd = new GTextField(window1, 120, 260, 120, 30, G4P.SCROLLBARS_NONE);
   itemAdd.setPromptText("Add Something");
   itemAdd.setOpaque(true);
   itemAdd.addEventHandler(this, "addtoToDoList");
-  removeLabel = new GLabel(window1, 60, 310, 101, 31);
+  removeLabel = new GLabel(window1, 40, 310, 101, 31);
   removeLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   removeLabel.setText("Remove:");
   removeLabel.setOpaque(false);
@@ -321,7 +325,7 @@ public void createGUI(){
   redSliderAccent1.setNumberFormat(G4P.INTEGER, 0);
   redSliderAccent1.setOpaque(false);
   redSliderAccent1.addEventHandler(this, "redSlider1");
-  greenSliderAccent_1 = new GSlider(window1, 110, 440, 100, 40, 10.0);
+  greenSliderAccent_1 = new GSlider(window1, 110, 430, 100, 40, 10.0);
   greenSliderAccent_1.setShowValue(true);
   greenSliderAccent_1.setLimits(34, 0, 255);
   greenSliderAccent_1.setNumberFormat(G4P.INTEGER, 0);
@@ -333,22 +337,22 @@ public void createGUI(){
   blueSliderAccent_1.setNumberFormat(G4P.INTEGER, 0);
   blueSliderAccent_1.setOpaque(false);
   blueSliderAccent_1.addEventHandler(this, "blueSlider_1");
-  reset1 = new GButton(window1, 80, 510, 80, 30);
+  reset1 = new GButton(window1, 90, 520, 80, 30);
   reset1.setText("Reset");
   reset1.addEventHandler(this, "resetButtonPressedAccent1");
   accent1Label = new GLabel(window1, 70, 360, 100, 40);
   accent1Label.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   accent1Label.setText("Colour 1:");
   accent1Label.setOpaque(false);
-  label3 = new GLabel(window1, 30, 400, 101, 35);
+  label3 = new GLabel(window1, 30, 390, 110, 40);
   label3.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label3.setText("Red:");
   label3.setOpaque(false);
-  label4 = new GLabel(window1, 30, 440, 105, 30);
+  label4 = new GLabel(window1, 30, 430, 110, 40);
   label4.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label4.setText("Green:");
   label4.setOpaque(false);
-  label5 = new GLabel(window1, 30, 470, 105, 30);
+  label5 = new GLabel(window1, 30, 470, 110, 40);
   label5.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label5.setText("Blue:");
   label5.setOpaque(false);
@@ -359,7 +363,7 @@ public void createGUI(){
   removeItem = new GTextField(window1, -172, -193, 120, 32, G4P.SCROLLBARS_NONE);
   removeItem.setOpaque(true);
   removeItem.addEventHandler(this, "removeToDoList");
-  itemRemove = new GTextField(window1, 140, 310, 120, 30, G4P.SCROLLBARS_NONE);
+  itemRemove = new GTextField(window1, 120, 310, 120, 30, G4P.SCROLLBARS_NONE);
   itemRemove.setPromptText("Remove Something");
   itemRemove.setOpaque(true);
   itemRemove.addEventHandler(this, "removeToDoListItem");
@@ -367,11 +371,11 @@ public void createGUI(){
   label7.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label7.setText("Colour 2:");
   label7.setOpaque(false);
-  label8 = new GLabel(window1, 340, 400, 105, 36);
+  label8 = new GLabel(window1, 340, 390, 105, 36);
   label8.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label8.setText("Red:");
   label8.setOpaque(false);
-  label9 = new GLabel(window1, 340, 440, 109, 34);
+  label9 = new GLabel(window1, 340, 430, 109, 34);
   label9.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label9.setText("Green:");
   label9.setOpaque(false);
@@ -379,31 +383,31 @@ public void createGUI(){
   label10.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label10.setText("Blue:");
   label10.setOpaque(false);
-  redSliderAccent_1 = new GSlider(window1, 110, 400, 100, 40, 10.0);
+  redSliderAccent_1 = new GSlider(window1, 110, 390, 100, 40, 10.0);
   redSliderAccent_1.setShowValue(true);
   redSliderAccent_1.setLimits(34, 0, 255);
   redSliderAccent_1.setNumberFormat(G4P.INTEGER, 0);
   redSliderAccent_1.setOpaque(false);
   redSliderAccent_1.addEventHandler(this, "redSlider_1");
-  redSliderAccent_2 = new GSlider(window1, 420, 400, 100, 40, 10.0);
+  redSliderAccent_2 = new GSlider(window1, 420, 390, 100, 40, 10.0);
   redSliderAccent_2.setShowValue(true);
   redSliderAccent_2.setLimits(233, 0, 255);
   redSliderAccent_2.setNumberFormat(G4P.INTEGER, 0);
   redSliderAccent_2.setOpaque(false);
   redSliderAccent_2.addEventHandler(this, "redSlider_2");
-  greenSliderAccent_2 = new GSlider(window1, 420, 440, 100, 40, 10.0);
+  greenSliderAccent_2 = new GSlider(window1, 420, 430, 100, 40, 10.0);
   greenSliderAccent_2.setShowValue(true);
   greenSliderAccent_2.setLimits(233, 0, 255);
   greenSliderAccent_2.setNumberFormat(G4P.INTEGER, 0);
   greenSliderAccent_2.setOpaque(false);
   greenSliderAccent_2.addEventHandler(this, "greenSlider_2");
-  blueSliderAccent_2 = new GSlider(window1, 420, 480, 100, 40, 10.0);
+  blueSliderAccent_2 = new GSlider(window1, 420, 470, 100, 40, 10.0);
   blueSliderAccent_2.setShowValue(true);
   blueSliderAccent_2.setLimits(233, 0, 255);
   blueSliderAccent_2.setNumberFormat(G4P.INTEGER, 0);
   blueSliderAccent_2.setOpaque(false);
   blueSliderAccent_2.addEventHandler(this, "blueSlider_2");
-  reset2 = new GButton(window1, 390, 520, 80, 30);
+  reset2 = new GButton(window1, 400, 520, 80, 30);
   reset2.setText("Reset");
   reset2.addEventHandler(this, "resetButtonPressedAccent2");
   window1.loop();

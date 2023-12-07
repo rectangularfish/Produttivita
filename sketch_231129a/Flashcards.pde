@@ -5,6 +5,8 @@ class Flashcard {
   String back;
   String currentSide;
 
+  boolean typeIntructions;
+
   Flashcard() {
     this.front = "";
     this.back = "";
@@ -39,6 +41,11 @@ class Flashcard {
     stroke(accent1);
     rect(width / 2, height / 2, width - 100, height - 200, 25);
 
+
+
+
+
+
     textAlign(LEFT);
     textSize(64);
 
@@ -50,6 +57,22 @@ class Flashcard {
         numNewlines++;
       }
     }
+
+
+    if (createFlashcard) {
+
+      textSize(20);
+      text("Press enter after finishing your flashcard to edit the backside", 950, 620);
+    } else if (practiceFlashcards) {
+
+      textSize(20);
+      text("Press space to flip a flashcard and use arrow keys to change the flashcards", 850, 620);
+      text("Press backspace to stop practicing", 850, 660);
+    }
+
+
+    textSize(64);
+
 
     // Adjust the starting position based on the number of newlines
     startY = height / 2 - numNewlines * 30; // Adjust the multiplier as needed
