@@ -1,31 +1,26 @@
 import g4p_controls.*;
 import processing.sound.*;
 
-
-
-
 SoundFile fileLofi, fileJazz, fileClassical, currentMusic ;
 
-TodoList list;
 
+
+TodoList list;
 PomodoroTimer timer;
 
 int breakTime = 5;
-
 int studyTime = 25;
-
 int drawLoop = 0;
 
 color accent1;
 color accent2;
-
 
 int r1 = 34;
 int g1 = 34;
 int b1 = 34;
 
 int r2 = 221;
-int g2 = 221; 
+int g2 = 221;
 int b2 = 221;
 
 
@@ -33,20 +28,7 @@ int frameCounter = 0;
 float volume = 100;
 
 
-boolean lofi = false;
-
-boolean jazz = false;
-
-boolean classical = false;
-
-boolean musicPlaying = false;
-
-boolean createFlashcard = false;
-
-boolean displayFlashcard = false;
-
-
-boolean timerChanged = false;
+boolean lofi, jazz, classical, musicPlaying, createFlashcard, displayFlashcard, timerChanged, practiceFlashcards = false;
 
 float pausedTime = 0;
 
@@ -54,37 +36,27 @@ float pausedTime = 0;
 int currentFlashcardI = 0;
 ArrayList<Flashcard> flashcards;
 
-boolean practiceFlashcards = false;
-Flashcard currentFlash;
-Flashcard fl;
+Flashcard currentFlash, fl;
+
+
 void setup() {
   size(1600, 800);
-
-
-  frameRate(1000);
-
   timer = new PomodoroTimer(studyTime, breakTime, false);
-
   list = new TodoList();
-
-  
-  
   flashcards = new ArrayList<Flashcard>();
-
-
   createGUI();
   loadData();
 }
 
 
 void draw() {
-  
+
   accent1 = color(r1, g1, b1);
-  
+
   accent2 = color(r2, g2, b2);
-  
-  
-  
+
+
+
   if (timerChanged) {
 
     timer = new PomodoroTimer(studyTime, breakTime, false);
@@ -130,8 +102,6 @@ void draw() {
 
   if (createFlashcard) {
     fl.drawFlashcard();
-
-  
   }
 
 
@@ -159,7 +129,6 @@ void draw() {
       }
     }
   }
-
 }
 
 
