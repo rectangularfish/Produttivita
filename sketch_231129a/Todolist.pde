@@ -36,14 +36,14 @@ class TodoList {
     noStroke();
 
     rectMode(CENTER);
-    rect(width/6, height/2, 515, 515, 50);
+    rect(300, height/2, 515, 515, 50);
     
     fill(accent1);
     
     textAlign(LEFT);
-    textSize(64);
+    textSize(60);
 
-    text("Todo list:", 20, height/2 - 150);
+    text("Todo list:", 80, height/2 - 150);
     textSize(48);
     
     

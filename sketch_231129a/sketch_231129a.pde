@@ -1,7 +1,20 @@
 import g4p_controls.*;
-import processing.sound.*;
+//import processing.sound.*;
+import ddf.minim.analysis.*;
+import ddf.minim.*;
 
-SoundFile fileLofi, fileJazz, fileClassical, currentMusic ;
+Minim minim;
+AudioPlayer fileLofi, fileJazz, filePiano, currentMusic; 
+FFT fft;
+
+
+int numBands = 128;
+float[] smoothedBandValues = new float[numBands];
+float maxCircleSize = 250; // Set the maximum size for the circles
+
+
+
+//SoundFile fileLofi, fileJazz, fileClassical, currentMusic ;
 
 
 
@@ -28,13 +41,16 @@ int frameCounter = 0;
 float volume = 100;
 
 
-boolean lofi, jazz, classical, musicPlaying, createFlashcard, displayFlashcard, timerChanged, practiceFlashcards = false;
+boolean lofi, jazz, piano, musicPlaying, createFlashcard, displayFlashcard, timerChanged, practiceFlashcards = false;
 
 float pausedTime = 0;
 
 
 int currentFlashcardI = 0;
 ArrayList<Flashcard> flashcards;
+
+String currentMusicString = " ";
+
 
 Flashcard currentFlash, fl;
 
@@ -44,6 +60,10 @@ void setup() {
   timer = new PomodoroTimer(studyTime, breakTime, false);
   list = new TodoList();
   flashcards = new ArrayList<Flashcard>();
+  
+  minim = new Minim(this);
+  
+  
   createGUI();
   loadData();
 }
@@ -129,6 +149,7 @@ void draw() {
       }
     }
   }
+  genVisualizer();
 }
 
 
@@ -139,25 +160,39 @@ void draw() {
 
 void loadData() {
 
-  fileLofi = new SoundFile(this, "lofi.wav");
+  
+  fileLofi = minim.loadFile("lofi.wav", 1024);
+  
+  filePiano = minim.loadFile("piano.wav", 1024);
+  
+  fileJazz = minim.loadFile("jazz.wav", 1024);
+  
+  currentMusic = minim.loadFile("test.wav", 1024);
+  
+  fft = new FFT(currentMusic.bufferSize(), currentMusic.sampleRate());
+  
+  //fileLofi = new SoundFile(this, "lofi.wav");
 
-  fileClassical = new SoundFile(this, "piano.wav");
+  //fileClassical = new SoundFile(this, "piano.wav");
 
-  fileJazz = new SoundFile(this, "jazz.wav");
-  currentMusic = new SoundFile(this, "test.wav");
+  //fileJazz = new SoundFile(this, "jazz.wav");
+  //currentMusic = new SoundFile(this, "test.wav");
 }
 
 
-void playMusic(SoundFile i) {
-
-  currentMusic.stop();
+//void playMusic(SoundFile i) {
+void playMusic(AudioPlayer i) {
+  currentMusic.pause();
 
   currentMusic = i;
 
   currentMusic.play();
-  currentMusic.amp(volume);
+  currentMusic.setGain(volume);
 
   musicPlaying = true;
+  
+  
+    fft = new FFT(currentMusic.bufferSize(), currentMusic.sampleRate());
 
 
   pauseMusicB.setText("Pause");

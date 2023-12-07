@@ -91,7 +91,7 @@ class PomodoroTimer {
 
     fill(accent2);
     textAlign(CENTER);
-    text(minutesDisplay + ":" + secondsDisplay, width / 2, (height / 2) + 20);
+    text(minutesDisplay + ":" + secondsDisplay, 800, (height / 2) + 20);
 
     noFill();
 
@@ -101,6 +101,6 @@ class PomodoroTimer {
 
     float angle = (seconds * 1.0 /  (this.time)) * 360;
 
-    arc(width / 2, height / 2, 400, 400, 0, radians(angle));
+    arc(800, height / 2, 400, 400, 0, radians(angle));
   }
 }
