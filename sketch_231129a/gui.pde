@@ -5,9 +5,9 @@
  * designer and care should be taken when editing this file.
  * Only add/edit code inside the event handlers i.e. only
  * use lines between the matching comment tags. e.g.
-
+ 
  void myBtnEvents(GButton button) { //_CODE_:button1:12356:
-     // It is safe to enter your event code here  
+ // It is safe to enter your event code here
  } //_CODE_:button1:12356:
  
  * Do not rename this tab!
@@ -19,38 +19,45 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:windo
 } //_CODE_:window1:918574:
 
 public void lofiButtonPressed(GButton source, GEvent event) { //_CODE_:lofiMusic:351987:
+
+  // change current music to lofi
   currentMusicString = "Lofi";
   playMusic(fileLofi);
 } //_CODE_:lofiMusic:351987:
 
 public void pianoButtonPressed(GButton source, GEvent event) { //_CODE_:pianoMusic:529890:
-    currentMusicString = "Piano";
-
+  // change current music to piano
+  currentMusicString = "Piano";
   playMusic(filePiano);
 } //_CODE_:pianoMusic:529890:
 
 public void jazzButtonPressed(GButton source, GEvent event) { //_CODE_:jazzMusic:741816:
-
-    currentMusicString = "Jazz";
-
+  // change current music to jazz
+  currentMusicString = "Jazz";
   playMusic(fileJazz);
 } //_CODE_:jazzMusic:741816:
 
 public void getVolumeSlider(GSlider source, GEvent event) { //_CODE_:volumeSlider:449108:
-  println(volume);
-  volume = volumeSlider.getValueF() / 100;
-  currentMusic.setGain(volume);
+  // update volume variable based on slider value
+  volume = volumeSlider.getValueF();
+  volume = map(volume, 0, 100, -70, 70);
+
+  
+
 } //_CODE_:volumeSlider:449108:
 
 public void playMusicButtonPressed(GButton source, GEvent event) { //_CODE_:pauseMusicB:501192:
+
+  // pause the music
   if (musicPlaying) {
     // Pause the music and store the current position
     currentMusic.pause();
     pausedTime = currentMusic.position();
     pauseMusicB.setText("Resume");
     musicPlaying = false;
-  } else {
-    // Resume the music from the stored position
+  }
+  // resume the music from the stored position
+  else {
 
     currentMusic.play(int(pausedTime));
     pauseMusicB.setText("Pause");
@@ -60,58 +67,73 @@ public void playMusicButtonPressed(GButton source, GEvent event) { //_CODE_:paus
 
 public void setStudyTimer(GTextField source, GEvent event) { //_CODE_:studyAmount:773092:
 
-  timer.timerStart = false;
 
+  // stop and reset timer
+  timer.timerStart = false;
   startTimer.setText("Start Timer");
 
-
+  // set study time to value from the text field
   String studyAmountText = source.getText();
-  if (!studyAmountText.isEmpty()) {
+  if (studyAmountText.isEmpty() == false) {
     int studyAmountValue = int(studyAmountText);
     studyTime = studyAmountValue;
+
+    // check if study time is within a valid range
+
     if (studyTime == 0 || studyTime > 999) {
       studyTime = 25;
     }
-    println("Study time set to: " + studyTime);
   }
   timerChanged = true;
 } //_CODE_:studyAmount:773092:
 
 public void setBreakTimer(GTextField source, GEvent event) { //_CODE_:breakAmount:879775:
+
+  // stop the timer
   timer.timerStart = false;
   startTimer.setText("Start Timer");
 
+
+  // set break time to value from the text field
+
   String breakAmountText = source.getText();
-  if (!breakAmountText.isEmpty()) {
+  if (breakAmountText.isEmpty() == false) {
     int breakAmountValue = int(breakAmountText);
     breakTime = breakAmountValue;
+
+    // check if study time is within a valid range
+
     if (breakTime == 0 || breakTime > 999) {
       breakTime = 5;
     }
-    println("Break time set to: " + breakTime);
   }
   timerChanged = true;
 } //_CODE_:breakAmount:879775:
 
 public void timerPressed(GButton source, GEvent event) { //_CODE_:startTimer:907608:
+
+  // Pause or resume the timer based on the current state
+
   if (timer.timerStart == false) {
+
+    // start timer
     startTimer.setText("Pause");
     timer.timerStart = true;
   } else if (timer.timerStart == true) {
 
+    // pause timer
     startTimer.setText("Resume");
-
     timer.timerStart = false;
   }
 } //_CODE_:startTimer:907608:
 
 public void addtoToDoList(GTextField source, GEvent event) { //_CODE_:itemAdd:302669:
   if (event == GEvent.ENTERED) {
-    // Get the text from the todoField
+    // get the text from the todoField
     String todoText = source.getText();
 
-    // Check if the text is not empty
-    if (!todoText.isEmpty()) {
+    // check if the text is not empty
+    if (todoText.isEmpty() == false) {
 
       list.addTask(todoText);
 
@@ -122,104 +144,115 @@ public void addtoToDoList(GTextField source, GEvent event) { //_CODE_:itemAdd:30
   }
 } //_CODE_:itemAdd:302669:
 
+public void removeToDoListItem(GTextField source, GEvent event) { //_CODE_:itemRemove:820157:
+  if (event == GEvent.ENTERED) {
+    // get the text from the removeField
+    String taskToRemove = source.getText();
+
+    // Check if the text is not empty
+    if (taskToRemove.isEmpty() == false) {
+      // remove the task from the todo list
+      list.tasks.remove(taskToRemove);
+
+
+      source.setText("");
+    }
+  }
+} //_CODE_:itemRemove:820157:
+
+// this code is auto generated and will not delete itself even though the GUI component does not exist.
 public void removetoToDoList(GTextField source, GEvent event) { //_CODE_:removeField:287909:
   println("removeField - GTextField >> GEvent." + event + " @ " + millis());
 } //_CODE_:removeField:287909:
 
+
+
 public void genFlashcardPressed(GButton source, GEvent event) { //_CODE_:genFlashcard:367377:
+  // create a new flashcard
   fl = new Flashcard();
-  fl.typeIntructions = true; 
   createFlashcard = true;
 } //_CODE_:genFlashcard:367377:
 
 public void practice(GButton source, GEvent event) { //_CODE_:practiceFlashcard:245375:
 
+
+  // if there are flashcards made
   if (practiceFlashcards == false && flashcards.size() > 0) {
 
 
     practiceFlashcard.setText("Practice Flashcards");
 
     practiceFlashcards = true;
-  } else if (practiceFlashcards == true && flashcards.size() > 0) {
+  }
+  // stop practicing flashcards
+  else if (practiceFlashcards == true && flashcards.size() > 0) {
 
 
     practiceFlashcard.setText("Stop Practicing");
 
     practiceFlashcards = false;
   }
-  
-  
-    typeIntructions = false; 
-
 } //_CODE_:practiceFlashcard:245375:
 
+
+// this code is auto generated and will not delete itself even though the GUI component does not exist.
 public void redSlider1(GSlider source, GEvent event) { //_CODE_:redSliderAccent1:591484:
   println("redSliderAccent1 - GSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:redSliderAccent1:591484:
 
-public void greenSlider_1(GSlider source, GEvent event) { //_CODE_:greenSliderAccent_1:535167:
+// this code is auto generated and will not delete itself even though the GUI component does not exist.
+public void removeToDoList(GTextField source, GEvent event) { //_CODE_:removeItem:883900:
+  println("removeItem - GTextField >> GEvent." + event + " @ " + millis());
+} //_CODE_:removeItem:883900:
 
+
+
+public void redSlider_1(GSlider source, GEvent event) { //_CODE_:redSliderAccent_1:668846:
+  // set accent 1 red colour
+  r1 = redSliderAccent_1.getValueI();
+} //_CODE_:redSliderAccent_1:668846:
+
+
+
+public void greenSlider_1(GSlider source, GEvent event) { //_CODE_:greenSliderAccent_1:535167:
+  // set accent 1 green colour
   g1 = greenSliderAccent_1.getValueI();
 } //_CODE_:greenSliderAccent_1:535167:
 
 public void blueSlider_1(GSlider source, GEvent event) { //_CODE_:blueSliderAccent_1:872495:
-
+  // set accent 1 blue colour
   b1 = blueSliderAccent_1.getValueI();
 } //_CODE_:blueSliderAccent_1:872495:
 
 public void resetButtonPressedAccent1(GButton source, GEvent event) { //_CODE_:reset1:909434:
-
-
+  // reset accent 1 colours
   redSliderAccent_1.setValue(34);
   blueSliderAccent_1.setValue(34);
   greenSliderAccent_1.setValue(34);
 } //_CODE_:reset1:909434:
 
-public void removeToDoList(GTextField source, GEvent event) { //_CODE_:removeItem:883900:
-  println("removeItem - GTextField >> GEvent." + event + " @ " + millis());
-} //_CODE_:removeItem:883900:
-
-public void removeToDoListItem(GTextField source, GEvent event) { //_CODE_:itemRemove:820157:
-  if (event == GEvent.ENTERED) {
-    // Get the text from the removeField
-    String taskToRemove = source.getText();
-
-    // Check if the text is not empty
-    if (!taskToRemove.isEmpty()) {
-      // Remove the task from the todo list
-      list.tasks.remove(taskToRemove);
 
 
-      source.setText("");
 
 
-      // Print a message to the console (you can remove this line if not needed)
-      println("Task removed from the Todo list: " + taskToRemove);
-    } else {
-      // Print a message to the console if the text field is empty (you can remove this line if not needed)
-      println("Text field is empty. Please enter a task to remove.");
-    }
-  }
-} //_CODE_:itemRemove:820157:
-
-public void redSlider_1(GSlider source, GEvent event) { //_CODE_:redSliderAccent_1:668846:
-
-  r1 = redSliderAccent_1.getValueI();
-} //_CODE_:redSliderAccent_1:668846:
 
 public void redSlider_2(GSlider source, GEvent event) { //_CODE_:redSliderAccent_2:666156:
+  // set accent 2 red colour
   r2 = redSliderAccent_2.getValueI();
 } //_CODE_:redSliderAccent_2:666156:
 
 public void greenSlider_2(GSlider source, GEvent event) { //_CODE_:greenSliderAccent_2:855862:
+  // set accent 2 green colour
   g2 = greenSliderAccent_2.getValueI();
 } //_CODE_:greenSliderAccent_2:855862:
 
 public void blueSlider_2(GSlider source, GEvent event) { //_CODE_:blueSliderAccent_2:401191:
+  // set accent 2 blue colour
   b2 = blueSliderAccent_2.getValueI();
 } //_CODE_:blueSliderAccent_2:401191:
 
 public void resetButtonPressedAccent2(GButton source, GEvent event) { //_CODE_:reset2:665703:
+  // reset accent 2 colours
   redSliderAccent_2.setValue(233);
   blueSliderAccent_2.setValue(233);
   greenSliderAccent_2.setValue(233);
@@ -227,9 +260,9 @@ public void resetButtonPressedAccent2(GButton source, GEvent event) { //_CODE_:r
 
 
 
-// Create all the GUI controls. 
+// Create all the GUI controls.
 // autogenerated do not edit
-public void createGUI(){
+public void createGUI() {
   G4P.messagesEnabled(false);
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
@@ -413,46 +446,46 @@ public void createGUI(){
   window1.loop();
 }
 
-// Variable declarations 
+// Variable declarations
 // autogenerated do not edit
 GWindow window1;
-GButton lofiMusic; 
-GButton pianoMusic; 
-GButton jazzMusic; 
-GSlider volumeSlider; 
-GButton pauseMusicB; 
-GLabel musicLabel; 
-GLabel label1; 
-GTextField studyAmount; 
-GLabel studyLabel; 
-GLabel breakLabel; 
-GTextField breakAmount; 
-GButton startTimer; 
-GLabel todoLabel; 
-GLabel addLabel; 
-GTextField itemAdd; 
-GLabel removeLabel; 
-GTextField removeField; 
-GLabel label2; 
-GButton genFlashcard; 
-GButton practiceFlashcard; 
-GSlider redSliderAccent1; 
-GSlider greenSliderAccent_1; 
-GSlider blueSliderAccent_1; 
-GButton reset1; 
-GLabel accent1Label; 
-GLabel label3; 
-GLabel label4; 
-GLabel label5; 
-GLabel label6; 
-GTextField removeItem; 
-GTextField itemRemove; 
-GLabel label7; 
-GLabel label8; 
-GLabel label9; 
-GLabel label10; 
-GSlider redSliderAccent_1; 
-GSlider redSliderAccent_2; 
-GSlider greenSliderAccent_2; 
-GSlider blueSliderAccent_2; 
-GButton reset2; 
+GButton lofiMusic;
+GButton pianoMusic;
+GButton jazzMusic;
+GSlider volumeSlider;
+GButton pauseMusicB;
+GLabel musicLabel;
+GLabel label1;
+GTextField studyAmount;
+GLabel studyLabel;
+GLabel breakLabel;
+GTextField breakAmount;
+GButton startTimer;
+GLabel todoLabel;
+GLabel addLabel;
+GTextField itemAdd;
+GLabel removeLabel;
+GTextField removeField;
+GLabel label2;
+GButton genFlashcard;
+GButton practiceFlashcard;
+GSlider redSliderAccent1;
+GSlider greenSliderAccent_1;
+GSlider blueSliderAccent_1;
+GButton reset1;
+GLabel accent1Label;
+GLabel label3;
+GLabel label4;
+GLabel label5;
+GLabel label6;
+GTextField removeItem;
+GTextField itemRemove;
+GLabel label7;
+GLabel label8;
+GLabel label9;
+GLabel label10;
+GSlider redSliderAccent_1;
+GSlider redSliderAccent_2;
+GSlider greenSliderAccent_2;
+GSlider blueSliderAccent_2;
+GButton reset2;
